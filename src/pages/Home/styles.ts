@@ -10,5 +10,5 @@ export const HomeWrapper = styled.div`
 export const HomeContainer = styled.div`
   max-width: 75rem;
   margin: 0 auto;
-  padding: 6.25rem 0 0 0;
+  padding: 0 2rem 2rem 2rem;
 `

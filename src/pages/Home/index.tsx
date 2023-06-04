@@ -1,3 +1,4 @@
+import { CoffeeList } from './components/CoffeeList'
 import { Hero } from './components/Hero'
 import { HomeContainer, HomeWrapper } from './styles'
 
@@ -6,6 +7,7 @@ export function Home() {
     <HomeWrapper>
       <HomeContainer>
         <Hero />
+        <CoffeeList />
       </HomeContainer>
     </HomeWrapper>
   )

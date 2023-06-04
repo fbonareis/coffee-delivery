@@ -1,10 +1,11 @@
 import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react'
 import styled, { DefaultTheme } from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.section`
   display: flex;
   gap: 1rem;
   justify-content: space-between;
+  padding: 6.25rem 0px 6.25rem 0px;
 `
 
 export const Section = styled.div`

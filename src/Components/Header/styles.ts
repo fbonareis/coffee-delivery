@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
+  padding: 0 2rem 0 2rem;
 `
 
 export const ActionsGroup = styled.div`
