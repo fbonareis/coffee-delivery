@@ -1,5 +1,7 @@
 import { Minus, Plus } from '@phosphor-icons/react'
+import { useContext, useEffect } from 'react'
 
+import { AppContext } from '../../../../contexts/AppContext'
 import {
   AddToCart,
   CartIcon,
@@ -16,30 +18,46 @@ import {
 
 interface CoffeeListItemProps {
   id: string
-  title: string
+  name: string
   description: string
-  tags: string[]
+  quantity: number
   price: number
-  image: string
+  tags: string[]
+  image?: string
 }
 
 export function CoffeeListItem({
   id,
-  title,
+  name,
   description,
+  quantity,
   tags,
   image,
   price,
 }: CoffeeListItemProps) {
+  const { updateQuantity } = useContext(AppContext)
+
+  useEffect(() => {
+    console.log('item use effect')
+  }, [])
+
+  function handleIncrementQuantity() {
+    updateQuantity(id, quantity + 1)
+  }
+
+  function handleDecrementQuantity() {
+    updateQuantity(id, quantity - 1)
+  }
+
   return (
     <Container>
-      <Image src={image} alt={title} />
+      <Image src={image} alt={name} />
       <Tags>
         {tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
         ))}
       </Tags>
-      <Title>{title}</Title>
+      <Title>{name}</Title>
       <Description>{description}</Description>
 
       <Footer>
@@ -49,16 +67,16 @@ export function CoffeeListItem({
         </Price>
 
         <QuantitySelector>
-          <button>
+          <button onClick={handleDecrementQuantity}>
             <Minus weight="bold" />
           </button>
-          <input type="number" readOnly value={2} />
-          <button>
+          <input type="number" readOnly value={quantity} />
+          <button onClick={handleIncrementQuantity}>
             <Plus weight="bold" />
           </button>
         </QuantitySelector>
 
-        <AddToCart type="button">
+        <AddToCart>
           <CartIcon />
         </AddToCart>
       </Footer>

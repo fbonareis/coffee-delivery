@@ -77,25 +77,24 @@ export const Highlight = {
   Text: HighlightText,
 }
 
-const IconBaseAttrs = {
+const ShoppingCartIcon = styled(ShoppingCart).attrs({
   weight: 'fill',
   size: 16,
-}
-
-const ShoppingCartIcon = styled(ShoppingCart).attrs({
-  IconBaseAttrs,
 })``
 
 const CoffeeIcon = styled(Coffee).attrs({
-  IconBaseAttrs,
+  weight: 'fill',
+  size: 16,
 })``
 
 const PackageIcon = styled(Package).attrs({
-  IconBaseAttrs,
+  weight: 'fill',
+  size: 16,
 })``
 
 const TimerIcon = styled(Timer).attrs({
-  IconBaseAttrs,
+  weight: 'fill',
+  size: 16,
 })``
 
 export const Icon = {

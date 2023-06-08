@@ -1,4 +1,7 @@
+import { useContext } from 'react'
+
 import logoCoffeeDelivery from '../../assets/logo-coffee-delivery.svg'
+import { AppContext } from '../../contexts/AppContext'
 import {
   ActionsGroup,
   Cart,
@@ -9,6 +12,8 @@ import {
 } from './styles'
 
 export function Header() {
+  const { cart } = useContext(AppContext)
+
   return (
     <HeaderContainer>
       <img src={logoCoffeeDelivery} alt="Coffee Delivery" />
@@ -19,7 +24,7 @@ export function Header() {
           Cascavel, PR
         </Location>
 
-        <Cart items={8}>
+        <Cart items={cart.summary.quantityTotal}>
           <CartIcon />
         </Cart>
       </ActionsGroup>
