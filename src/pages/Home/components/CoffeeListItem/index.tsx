@@ -1,7 +1,7 @@
 import { Minus, Plus } from '@phosphor-icons/react'
-import { useContext, useEffect } from 'react'
+import { useContext, useState } from 'react'
 
-import { AppContext } from '../../../../contexts/AppContext'
+import { AppContext } from '../../../../contexts'
 import {
   AddToCart,
   CartIcon,
@@ -16,58 +16,67 @@ import {
   Title,
 } from './styles'
 
-interface CoffeeListItemProps {
+export interface CoffeeListItemProps {
   id: string
   name: string
   description: string
-  quantity: number
   price: number
   tags: string[]
   image?: string
 }
 
-export function CoffeeListItem({
-  id,
-  name,
-  description,
-  quantity,
-  tags,
-  image,
-  price,
-}: CoffeeListItemProps) {
-  const { updateQuantity } = useContext(AppContext)
+export function CoffeeListItem(item: CoffeeListItemProps) {
+  const { addItemToCart } = useContext(AppContext)
+  const [quantity, setQuantity] = useState(0)
 
-  useEffect(() => {
-    console.log('item use effect')
-  }, [])
+  const hasInvalidQuantity = quantity === 0
 
-  function handleIncrementQuantity() {
-    updateQuantity(id, quantity + 1)
+  const handleAddToCart = () => {
+    const newItem = {
+      productId: item.id,
+      quantity,
+      ...item,
+    }
+
+    addItemToCart(newItem)
+    setQuantity(0)
   }
 
-  function handleDecrementQuantity() {
-    updateQuantity(id, quantity - 1)
+  const handleIncrementQuantity = () => setQuantity((prev) => prev + 1)
+
+  const handleDecrementQuantity = () => {
+    if (hasInvalidQuantity) {
+      return
+    }
+
+    setQuantity((prev) => prev - 1)
+  }
+
+  const formatToCurrency = (price: number) => {
+    return price.toFixed(2).replace('.', ',')
   }
 
   return (
     <Container>
-      <Image src={image} alt={name} />
+      <Image src={item.image} alt={item.name} />
       <Tags>
-        {tags.map((tag) => (
+        {item.tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
         ))}
       </Tags>
-      <Title>{name}</Title>
-      <Description>{description}</Description>
-
+      <Title>{item.name}</Title>
+      <Description>{item.description}</Description>
       <Footer>
         <Price>
           <span>R$</span>
-          {price.toFixed(2).replace('.', ',')}
+          {formatToCurrency(item.price)}
         </Price>
 
         <QuantitySelector>
-          <button onClick={handleDecrementQuantity}>
+          <button
+            onClick={handleDecrementQuantity}
+            disabled={hasInvalidQuantity}
+          >
             <Minus weight="bold" />
           </button>
           <input type="number" readOnly value={quantity} />
@@ -76,7 +85,7 @@ export function CoffeeListItem({
           </button>
         </QuantitySelector>
 
-        <AddToCart>
+        <AddToCart onClick={handleAddToCart} disabled={hasInvalidQuantity}>
           <CartIcon />
         </AddToCart>
       </Footer>

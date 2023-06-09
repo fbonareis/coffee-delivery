@@ -1,23 +1,14 @@
 import { useContext } from 'react'
 
-import { AppContext } from '../../contexts/AppContext'
+import { AppContext } from '../../contexts'
 
 export function Checkout() {
-  const { products } = useContext(AppContext)
-
-  function handleAddToCart() {
-    const product = {
-      id: 1,
-      name: 'Produto 1',
-    }
-  }
+  const { cart } = useContext(AppContext)
 
   return (
     <>
       <h1>Checkout</h1>
-      {JSON.stringify(products)}
-
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      {JSON.stringify(cart)}
     </>
   )
 }

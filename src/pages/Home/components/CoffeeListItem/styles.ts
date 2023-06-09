@@ -81,7 +81,6 @@ export const Price = styled.div`
 export const QuantitySelector = styled.div`
   display: flex;
   gap: 0.25rem;
-
   background-color: ${({ theme }) => theme['base-button']};
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   border-radius: 0.5rem;
@@ -109,7 +108,6 @@ export const QuantitySelector = styled.div`
   button {
     display: flex;
     align-items: center;
-
     background-color: transparent;
     border: none;
     outline: none;
@@ -117,12 +115,20 @@ export const QuantitySelector = styled.div`
     font-size: 14px;
     line-height: 130%;
 
+    transition: color 0.2s;
+
     &:hover {
       color: ${({ theme }) => theme['purple-dark']};
       cursor: pointer;
     }
+
+    :disabled {
+      color: ${({ theme }) => theme['base-hover']};
+      cursor: not-allowed;
+    }
   }
 `
+
 export const AddToCart = styled.button`
   display: flex;
   align-items: center;
@@ -132,9 +138,16 @@ export const AddToCart = styled.button`
   background-color: ${({ theme }) => theme['purple-dark']};
   border: none;
 
+  transition: background 0.2s;
+
   &:hover {
     background-color: ${({ theme }) => theme.purple};
     cursor: pointer;
+  }
+
+  :disabled {
+    background-color: ${({ theme }) => theme['base-hover']};
+    cursor: not-allowed;
   }
 `
 

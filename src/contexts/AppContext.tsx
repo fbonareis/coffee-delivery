@@ -1,23 +1,17 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react'
 
 import {
-  fetchProductsAction,
-  removeFromCartAction,
-  updateCartItemAction,
-  updateProductQuantityAction,
-} from '../reducers/actions'
-import { CartItem, Product, productsReducer } from '../reducers/reducer'
+  addItemToCartAction,
+  removeItemFromCartAction,
+  updateCartItemQuantityAction,
+} from '../reducers/cart/actions'
+import { CartItem, cartReducer, CartState } from '../reducers/cart/reducer'
 
 interface AppContextType {
-  products: Product[]
-  cart: {
-    items: CartItem[]
-    summary: {
-      quantityTotal: number
-    }
-  }
-  fetchProducts: () => void
-  updateQuantity: (productId: string, quantity: number) => void
+  cart: CartState
+  addItemToCart: (item: CartItem) => void
+  removeItemFromCart: (item: CartItem) => void
+  updateCartItemQuantity: (item: CartItem) => void
 }
 
 export const AppContext = createContext({} as AppContextType)
@@ -26,39 +20,57 @@ interface AppContextProviderProps {
   children: ReactNode
 }
 
-const initialState = {
-  products: [],
-  cart: {
-    items: [],
-    summary: {
-      quantityTotal: 0,
-    },
+const initialState: CartState = {
+  items: [],
+  summary: {
+    quantityTotal: 0,
+    subTotal: 0,
   },
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
-  const [productsState, dispatch] = useReducer(productsReducer, initialState)
+  const [cartState, dispatch] = useReducer(
+    cartReducer,
+    initialState,
+    (state) => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@coffee-delivery:cart-state-1.0.0',
+      )
 
-  const { products, cart } = productsState
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
 
-  function fetchProducts() {
-    dispatch(fetchProductsAction())
+      return state
+    },
+  )
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cartState)
+
+    localStorage.setItem('@coffee-delivery:cart-state-1.0.0', stateJSON)
+  }, [cartState])
+
+  const addItemToCart = (item: CartItem) => {
+    dispatch(addItemToCartAction(item))
   }
 
-  function updateQuantity(productId: string, quantity: number) {
-    dispatch(updateProductQuantityAction({ productId, quantity }))
+  const removeItemFromCart = (item: CartItem) => {
+    dispatch(removeItemFromCartAction(item))
+  }
 
-    if (quantity < 1) {
-      dispatch(removeFromCartAction(productId))
-      return
-    }
-
-    dispatch(updateCartItemAction({ productId, quantity }))
+  const updateCartItemQuantity = (item: CartItem) => {
+    dispatch(updateCartItemQuantityAction(item))
   }
 
   return (
     <AppContext.Provider
-      value={{ products, cart, fetchProducts, updateQuantity }}
+      value={{
+        cart: cartState,
+        addItemToCart,
+        removeItemFromCart,
+        updateCartItemQuantity,
+      }}
     >
       {children}
     </AppContext.Provider>

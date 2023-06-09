@@ -8,7 +8,6 @@ interface CoffeeListProps {
     description: string
     price: number
     tags: string[]
-    quantity: number
     image?: string
   }[]
 }
@@ -18,8 +17,8 @@ export function CoffeeList({ items }: CoffeeListProps) {
     <Container>
       <h2>Nossos Cafés</h2>
       <List>
-        {items.map(({ id, ...props }) => (
-          <CoffeeListItem key={id} id={id} {...props} />
+        {items.map((item) => (
+          <CoffeeListItem key={item.id} {...item} />
         ))}
       </List>
     </Container>
