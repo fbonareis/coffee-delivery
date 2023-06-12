@@ -15,11 +15,11 @@ import {
 export function Header() {
   const { cart } = useContext(AppContext)
 
-  console.log(cart)
-
   return (
     <HeaderContainer>
-      <img src={logoCoffeeDelivery} alt="Coffee Delivery" />
+      <Link to="/">
+        <img src={logoCoffeeDelivery} alt="Coffee Delivery" />
+      </Link>
 
       <ActionsGroup>
         <Location>

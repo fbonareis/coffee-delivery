@@ -40,6 +40,13 @@ interface CartProps {
   items: number
 }
 
+export const CartIcon = styled(ShoppingCart).attrs({
+  weight: 'fill',
+  size: 22,
+})`
+  color: ${({ theme }) => theme['yellow-dark']};
+`
+
 export const Cart = styled.div<CartProps>`
   display: flex;
   align-items: center;
@@ -48,6 +55,8 @@ export const Cart = styled.div<CartProps>`
   border-radius: 6px;
   background-color: ${({ theme }) => theme['yellow-light']};
   position: relative;
+
+  transition: all 0.2s;
 
   &::after {
     content: '${({ items }) => items}';
@@ -66,10 +75,12 @@ export const Cart = styled.div<CartProps>`
     top: -10px;
     right: -10px;
   }
-`
-export const CartIcon = styled(ShoppingCart).attrs({
-  weight: 'fill',
-  size: 22,
-})`
-  color: ${({ theme }) => theme['yellow-dark']};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.yellow};
+
+    ${CartIcon} {
+      color: ${({ theme }) => theme['yellow-light']};
+    }
+  }
 `

@@ -10,12 +10,14 @@ export interface CartItem {
   price: number
 }
 
+export interface CartSummary {
+  quantityTotal: number
+  subTotal: number
+}
+
 export interface CartState {
   items: CartItem[]
-  summary: {
-    quantityTotal: number
-    subTotal: number
-  }
+  summary: CartSummary
 }
 
 const calculateCartSummary = (items: CartItem[]) => {
@@ -49,7 +51,7 @@ export function cartReducer(state: CartState, action: any) {
     case ActionTypes.REMOVE_ITEM_FROM_CART: {
       return produce(state, (draft) => {
         const cartItemIndex = state.items.findIndex(
-          (item) => item.productId === action.payload.productId,
+          (item) => item.productId === action.payload.item.productId,
         )
 
         if (cartItemIndex === -1) {
@@ -64,14 +66,14 @@ export function cartReducer(state: CartState, action: any) {
     case ActionTypes.UPDATE_CART_ITEM_QUANTITY: {
       return produce(state, (draft) => {
         const cartItemIndex = state.items.findIndex(
-          (item) => item.productId === action.payload.productId,
+          (item) => item.productId === action.payload.item.productId,
         )
 
         if (cartItemIndex === -1) {
           return
         }
 
-        draft.items[cartItemIndex].quantity = action.payload.quantity
+        draft.items[cartItemIndex].quantity = action.payload.item.quantity
         draft.summary = calculateCartSummary(draft.items)
       })
     }

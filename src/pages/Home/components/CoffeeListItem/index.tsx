@@ -2,6 +2,7 @@ import { Minus, Plus } from '@phosphor-icons/react'
 import { useContext, useState } from 'react'
 
 import { AppContext } from '../../../../contexts'
+import { formatNumberToRealBR } from '../../../../utils'
 import {
   AddToCart,
   CartIcon,
@@ -52,10 +53,6 @@ export function CoffeeListItem(item: CoffeeListItemProps) {
     setQuantity((prev) => prev - 1)
   }
 
-  const formatToCurrency = (price: number) => {
-    return price.toFixed(2).replace('.', ',')
-  }
-
   return (
     <Container>
       <Image src={item.image} alt={item.name} />
@@ -67,10 +64,7 @@ export function CoffeeListItem(item: CoffeeListItemProps) {
       <Title>{item.name}</Title>
       <Description>{item.description}</Description>
       <Footer>
-        <Price>
-          <span>R$</span>
-          {formatToCurrency(item.price)}
-        </Price>
+        <Price>{formatNumberToRealBR(item.price)}</Price>
 
         <QuantitySelector>
           <button

@@ -19,4 +19,20 @@ export const defaultTheme = {
 
   'purple-light': '#EBE5F9',
   'purple-dark': '#4B2995',
+
+  fontSize: {
+    l: '1.25rem',
+    m: '1rem',
+    s: '0.875rem',
+    xs: '0.75rem',
+  },
+  fontWeight: {
+    bold: 'bold',
+    regular: 'normal',
+  },
+
+  lineHeight: {
+    text: '130%',
+    title: '130%',
+  },
 }
