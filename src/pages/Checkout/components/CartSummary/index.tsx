@@ -25,7 +25,7 @@ export function CartSummary({ subTotal, delivery, total }: CartSummaryProps) {
         <Summary.Value strong>{formatNumberToRealBR(total)}</Summary.Value>
       </Summary.Item>
 
-      <ConfirmButton>Confirmar Pedido</ConfirmButton>
+      <ConfirmButton type="submit">Confirmar Pedido</ConfirmButton>
     </Container>
   )
 }

@@ -1,6 +1,6 @@
-import { Minus, Plus } from '@phosphor-icons/react'
 import { useContext, useState } from 'react'
 
+import { QuantitySelector } from '../../../../Components/QuantitySelector'
 import { AppContext } from '../../../../contexts'
 import { formatNumberToRealBR } from '../../../../utils'
 import {
@@ -11,7 +11,6 @@ import {
   Footer,
   Image,
   Price,
-  QuantitySelector,
   Tag,
   Tags,
   Title,
@@ -66,18 +65,11 @@ export function CoffeeListItem(item: CoffeeListItemProps) {
       <Footer>
         <Price>{formatNumberToRealBR(item.price)}</Price>
 
-        <QuantitySelector>
-          <button
-            onClick={handleDecrementQuantity}
-            disabled={hasInvalidQuantity}
-          >
-            <Minus weight="bold" />
-          </button>
-          <input type="number" readOnly value={quantity} />
-          <button onClick={handleIncrementQuantity}>
-            <Plus weight="bold" />
-          </button>
-        </QuantitySelector>
+        <QuantitySelector
+          value={quantity}
+          onDecrement={handleDecrementQuantity}
+          onIncrement={handleIncrementQuantity}
+        />
 
         <AddToCart onClick={handleAddToCart} disabled={hasInvalidQuantity}>
           <CartIcon />

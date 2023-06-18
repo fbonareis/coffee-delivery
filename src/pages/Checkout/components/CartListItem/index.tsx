@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 
+import { QuantitySelector } from '../../../../Components/QuantitySelector'
 import { AppContext } from '../../../../contexts'
 import { CartItem } from '../../../../reducers/cart/reducer'
 import { formatNumberToRealBR } from '../../../../utils'
@@ -9,7 +10,6 @@ import {
   Icon,
   Name,
   Price,
-  QuantitySelector,
   RemoveButton,
   VStack,
 } from './styles'
@@ -48,18 +48,11 @@ export function CartListItem({ item }: CartListItemProps) {
         </HStack>
 
         <HStack style={{ gap: '0.5rem' }}>
-          <QuantitySelector>
-            <button
-              onClick={handleDecrementQuantity}
-              disabled={item.quantity === 1}
-            >
-              <Icon.Minus />
-            </button>
-            <input type="number" readOnly value={item.quantity} />
-            <button onClick={handleIncrementQuantity}>
-              <Icon.Plus />
-            </button>
-          </QuantitySelector>
+          <QuantitySelector
+            value={item.quantity}
+            onDecrement={handleDecrementQuantity}
+            onIncrement={handleIncrementQuantity}
+          />
 
           <RemoveButton onClick={handleRemoveItemFromCart}>
             <Icon.Trash />
