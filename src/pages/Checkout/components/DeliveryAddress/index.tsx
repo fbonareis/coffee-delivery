@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message'
 import { useFormContext } from 'react-hook-form'
 
-import { Text } from '@/components'
+import { Text } from '@/ui-components'
 
 import { CheckoutFormData } from './../../index'
 import {

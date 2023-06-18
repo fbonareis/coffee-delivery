@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import { Header } from '@/components'
+import { Header } from '@/ui-components'
 
 import { LayoutContainer } from './styles'
 

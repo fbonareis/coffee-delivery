@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 
-import { Text } from '@/components'
-import { QuantitySelector } from '@/components/QuantitySelector'
+import { Text } from '@/ui-components'
+import { QuantitySelector } from '@/ui-components/QuantitySelector'
 import { AppContext } from '@/contexts'
 import { CartItem } from '@/reducers/cart/reducer'
 import { formatNumberToRealBR } from '@/utils'

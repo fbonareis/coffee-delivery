@@ -1,4 +1,4 @@
-import { Text } from '@/components'
+import { Text } from '@/ui-components'
 import { formatNumberToRealBR } from '@/utils'
 
 import { ConfirmButton, Container, Item } from './styles'

@@ -1,4 +1,4 @@
-import { Text, Title } from '@/components'
+import { Text, Title } from '@/ui-components'
 
 import {
   Container,
