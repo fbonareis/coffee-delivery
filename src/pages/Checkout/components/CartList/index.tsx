@@ -1,4 +1,5 @@
-import { CartItem } from '../../../../reducers/cart/reducer'
+import { CartItem } from '@/reducers/cart/reducer'
+
 import { CartListItem } from '../CartListItem'
 import { Container } from './styles'
 

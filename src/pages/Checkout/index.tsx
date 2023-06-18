@@ -3,7 +3,8 @@ import { useContext } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import * as zod from 'zod'
 
-import { AppContext } from '../../contexts'
+import { AppContext } from '@/contexts'
+
 import { CartList } from './components/CartList'
 import { CartSummary } from './components/CartSummary'
 import { DeliveryAddress } from './components/DeliveryAddress'

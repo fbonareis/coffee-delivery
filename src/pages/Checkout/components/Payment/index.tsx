@@ -1,4 +1,5 @@
-import { Text } from '../../../../Components/Text'
+import { Text } from '@/components'
+
 import {
   Container,
   Header,

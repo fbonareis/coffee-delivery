@@ -4,8 +4,8 @@ import {
   addItemToCartAction,
   removeItemFromCartAction,
   updateCartItemQuantityAction,
-} from '../reducers/cart/actions'
-import { CartItem, cartReducer, CartState } from '../reducers/cart/reducer'
+} from '@/reducers/cart/actions'
+import { CartItem, cartReducer, CartState } from '@/reducers/cart/reducer'
 
 interface AppContextType {
   cart: CartState

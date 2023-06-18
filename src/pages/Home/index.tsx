@@ -1,4 +1,5 @@
-import coffeeItems from '../../data/coffee-items.json'
+import coffeeItems from '@/data/coffee-items.json'
+
 import { CoffeeList } from './components/CoffeeList'
 import { Hero } from './components/Hero'
 import { HomeContainer, HomeWrapper } from './styles'

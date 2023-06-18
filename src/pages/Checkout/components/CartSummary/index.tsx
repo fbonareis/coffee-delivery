@@ -1,4 +1,5 @@
-import { formatNumberToRealBR } from '../../../../utils'
+import { formatNumberToRealBR } from '@/utils'
+
 import { ConfirmButton, Container, Summary } from './styles'
 
 interface CartSummaryProps {

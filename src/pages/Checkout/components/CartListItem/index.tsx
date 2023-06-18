@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 
-import { QuantitySelector } from '../../../../Components/QuantitySelector'
-import { AppContext } from '../../../../contexts'
-import { CartItem } from '../../../../reducers/cart/reducer'
-import { formatNumberToRealBR } from '../../../../utils'
+import { QuantitySelector } from '@/components/QuantitySelector'
+import { AppContext } from '@/contexts'
+import { CartItem } from '@/reducers/cart/reducer'
+import { formatNumberToRealBR } from '@/utils'
+
 import {
   Container,
   HStack,

@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react'
 
-import { QuantitySelector } from '../../../../Components/QuantitySelector'
-import { AppContext } from '../../../../contexts'
-import { formatNumberToRealBR } from '../../../../utils'
+import { QuantitySelector } from '@/components'
+import { AppContext } from '@/contexts'
+import { formatNumberToRealBR } from '@/utils'
+
 import {
   AddToCart,
   CartIcon,
