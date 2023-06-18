@@ -1,6 +1,8 @@
 import { MapPin } from '@phosphor-icons/react'
 import styled from 'styled-components'
 
+import { device } from '@/utils'
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,13 +37,23 @@ export const Content = styled.div`
 export const FormContainer = styled.div`
   display: grid;
   gap: 1rem;
-  grid-template-columns: 200px auto 60px;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
-    'cep cep cep'
-    'street street street'
-    'number complement complement'
-    'city state state_short';
+    'cep cep'
+    'street number'
+    'complement complement'
+    'city city'
+    'state state_short';
+
+  @media ${device.tablet} {
+    grid-template-columns: 200px auto 60px;
+    grid-template-areas:
+      'cep cep cep'
+      'street street street'
+      'number complement complement'
+      'city state state_short';
+  }
 `
 
 export const FormControl = styled.div`

@@ -1,6 +1,8 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from '@phosphor-icons/react'
 import styled, { css } from 'styled-components'
 
+import { device } from '@/utils'
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,8 +61,13 @@ export const Icon = {
 
 export const PaymentOptions = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   justify-content: space-between;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+  }
 `
 
 export const PaymentOption = styled.div`

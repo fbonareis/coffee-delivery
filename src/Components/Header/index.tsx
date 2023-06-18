@@ -10,29 +10,32 @@ import {
   HeaderContainer,
   Location,
   LocationIcon,
+  Wrapper,
 } from './styles'
 
 export function Header() {
   const { cart } = useContext(AppContext)
 
   return (
-    <HeaderContainer>
-      <Link to="/">
-        <img src={logoCoffeeDelivery} alt="Coffee Delivery" />
-      </Link>
-
-      <ActionsGroup>
-        <Location>
-          <LocationIcon />
-          Cascavel, PR
-        </Location>
-
-        <Link to="/checkout">
-          <Cart items={cart.summary.quantityTotal}>
-            <CartIcon />
-          </Cart>
+    <Wrapper>
+      <HeaderContainer>
+        <Link to="/">
+          <img src={logoCoffeeDelivery} alt="Coffee Delivery" />
         </Link>
-      </ActionsGroup>
-    </HeaderContainer>
+
+        <ActionsGroup>
+          <Location>
+            <LocationIcon />
+            Cascavel, PR
+          </Location>
+
+          <Link to="/checkout">
+            <Cart items={cart.summary.quantityTotal}>
+              <CartIcon />
+            </Cart>
+          </Link>
+        </ActionsGroup>
+      </HeaderContainer>
+    </Wrapper>
   )
 }

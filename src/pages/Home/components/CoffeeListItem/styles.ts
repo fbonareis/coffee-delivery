@@ -137,6 +137,7 @@ export const AddToCart = styled.button`
   border-radius: 6px;
   background-color: ${({ theme }) => theme['purple-dark']};
   border: none;
+  margin-left: 0.5rem;
 
   transition: background 0.2s;
 

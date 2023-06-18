@@ -1,6 +1,7 @@
+import { Text } from '@/components'
 import { formatNumberToRealBR } from '@/utils'
 
-import { ConfirmButton, Container, Summary } from './styles'
+import { ConfirmButton, Container, Item } from './styles'
 
 interface CartSummaryProps {
   subTotal: number
@@ -11,20 +12,33 @@ interface CartSummaryProps {
 export function CartSummary({ subTotal, delivery, total }: CartSummaryProps) {
   return (
     <Container>
-      <Summary.Item>
-        <Summary.Name>Total de itens</Summary.Name>
-        <Summary.Value>{formatNumberToRealBR(subTotal)}</Summary.Value>
-      </Summary.Item>
+      <Item>
+        <Text size="s" color="base-text">
+          Total de itens
+        </Text>
 
-      <Summary.Item>
-        <Summary.Name>Entrega</Summary.Name>
-        <Summary.Value>{formatNumberToRealBR(delivery)}</Summary.Value>
-      </Summary.Item>
+        <Text size="m" color="base-text">
+          {formatNumberToRealBR(subTotal)}
+        </Text>
+      </Item>
 
-      <Summary.Item>
-        <Summary.Name strong>Total</Summary.Name>
-        <Summary.Value strong>{formatNumberToRealBR(total)}</Summary.Value>
-      </Summary.Item>
+      <Item>
+        <Text size="s" color="base-text">
+          Entrega
+        </Text>
+        <Text size="m" color="base-text">
+          {formatNumberToRealBR(delivery)}
+        </Text>
+      </Item>
+
+      <Item>
+        <Text size="l" color="base-text" weight="bold">
+          Total
+        </Text>
+        <Text size="l" color="base-text" weight="bold">
+          {formatNumberToRealBR(total)}
+        </Text>
+      </Item>
 
       <ConfirmButton type="submit">Confirmar Pedido</ConfirmButton>
     </Container>

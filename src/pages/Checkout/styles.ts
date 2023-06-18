@@ -1,14 +1,25 @@
 import styled from 'styled-components'
 
+import { device } from '@/utils'
+
 export const CheckoutContainer = styled.div`
   max-width: 75rem;
   margin: 0 auto;
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 2rem 5rem 2rem;
+
+  @media ${device.mobileL} {
+    padding: 0 2rem 2rem 2rem;
+  }
 `
 
 export const Sections = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 2rem;
+
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
 `
 
 const SectionTitle = styled.h3`
@@ -36,10 +47,14 @@ export const SectionContent = styled.div`
 `
 
 export const SectionCompleteCheckout = styled(BaseSection)`
-  width: 640px;
+  width: auto;
 
   ${SectionContent} {
     border-radius: 6px;
+  }
+
+  @media ${device.laptop} {
+    width: 640px;
   }
 `
 

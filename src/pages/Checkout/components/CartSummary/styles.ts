@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -8,43 +8,10 @@ export const Container = styled.div`
   margin-top: 1.5rem;
 `
 
-export const SummaryItem = styled.div`
+export const Item = styled.div`
   display: flex;
   justify-content: space-between;
 `
-
-export const SummaryItemName = styled.p<{ strong?: boolean }>`
-  font-size: 14px;
-  line-height: 130%;
-  color: ${({ theme }) => theme['base-text']};
-
-  ${({ strong }) =>
-    strong &&
-    css`
-      font-size: 20px;
-      font-weight: bold;
-    `}
-`
-
-export const SummaryItemValue = styled.p<{ strong?: boolean }>`
-  font-size: 16px;
-  line-height: 130%;
-  color: ${({ theme }) => theme['base-text']};
-
-  ${({ strong }) =>
-    strong &&
-    css`
-      font-size: 20px;
-      font-weight: bold;
-    `}
-`
-
-export const Summary = {
-  Item: SummaryItem,
-  Name: SummaryItemName,
-  Value: SummaryItemValue,
-}
-
 export const ConfirmButton = styled.button`
   border: none;
   background-color: ${({ theme }) => theme.yellow};

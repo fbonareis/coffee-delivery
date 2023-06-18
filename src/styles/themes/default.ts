@@ -21,14 +21,25 @@ export const defaultTheme = {
   'purple-dark': '#4B2995',
 
   fontSize: {
-    l: '1.25rem',
-    m: '1rem',
-    s: '0.875rem',
-    xs: '0.75rem',
+    text: {
+      l: '1.25rem',
+      m: '1rem',
+      s: '0.875rem',
+      xs: '0.75rem',
+    },
+
+    title: {
+      xl: '3rem',
+      l: '2rem',
+      m: '1.5rem',
+      s: '1.25rem',
+      xs: '1.125rem',
+    },
   },
   fontWeight: {
-    bold: 'bold',
+    bold: '700',
     regular: 'normal',
+    extraBold: '800',
   },
 
   lineHeight: {

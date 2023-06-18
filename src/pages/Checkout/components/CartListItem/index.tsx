@@ -1,18 +1,20 @@
 import { useContext } from 'react'
 
+import { Text } from '@/components'
 import { QuantitySelector } from '@/components/QuantitySelector'
 import { AppContext } from '@/contexts'
 import { CartItem } from '@/reducers/cart/reducer'
 import { formatNumberToRealBR } from '@/utils'
 
 import {
+  Actions,
   Container,
-  HStack,
+  Content,
   Icon,
-  Name,
+  Image,
+  Info,
   Price,
   RemoveButton,
-  VStack,
 } from './styles'
 
 interface CartListItemProps {
@@ -40,27 +42,27 @@ export function CartListItem({ item }: CartListItemProps) {
 
   return (
     <Container>
-      <img src={item.image} alt={item.name} />
-
-      <VStack style={{ gap: '0.5rem' }}>
-        <HStack style={{ justifyContent: 'space-between' }}>
-          <Name>{item.name}</Name>
+      <Image src={item.image} alt={item.name} />
+      <Content>
+        <Info style={{ justifyContent: 'space-between' }}>
+          <Text size="m" color="base-subtitle">
+            {item.name}
+          </Text>
           <Price>{formatNumberToRealBR(item.price)}</Price>
-        </HStack>
+        </Info>
 
-        <HStack style={{ gap: '0.5rem' }}>
+        <Actions>
           <QuantitySelector
             value={item.quantity}
             onDecrement={handleDecrementQuantity}
             onIncrement={handleIncrementQuantity}
           />
-
           <RemoveButton onClick={handleRemoveItemFromCart}>
             <Icon.Trash />
             Remover
           </RemoveButton>
-        </HStack>
-      </VStack>
+        </Actions>
+      </Content>
     </Container>
   )
 }

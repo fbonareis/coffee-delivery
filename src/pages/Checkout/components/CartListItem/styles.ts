@@ -2,32 +2,35 @@ import { Trash } from '@phosphor-icons/react'
 import styled from 'styled-components'
 
 export const Container = styled.li`
-  display: flex;
   gap: 1rem;
   list-style: none;
   border-bottom: 1px solid ${({ theme }) => theme['base-button']};
   padding-bottom: 1.5rem;
 
-  img {
-    width: 64px;
-    height: 64px;
-  }
+  display: grid;
+  grid-template-columns: minmax(48px, 64px) 1fr;
+  align-items: center;
 `
 
-export const HStack = styled.div`
-  display: flex;
+export const Image = styled.img`
+  max-width: 100%;
 `
 
-export const VStack = styled.div`
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  gap: 0.5rem;
 `
 
-export const Name = styled.p`
-  font-size: 1rem;
-  line-height: 130%;
-  color: ${({ theme }) => theme['base-subtitle']};
+export const Info = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const Actions = styled.div`
+  display: flex;
+  gap: 0.5rem;
 `
 
 export const Price = styled.p`
