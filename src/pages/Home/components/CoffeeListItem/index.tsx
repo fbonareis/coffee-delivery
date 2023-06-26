@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 
-import { QuantitySelector } from '@/ui-components'
 import { AppContext } from '@/contexts'
+import { QuantitySelector } from '@/ui-components'
 import { formatNumberToRealBR } from '@/utils'
 
 import {
