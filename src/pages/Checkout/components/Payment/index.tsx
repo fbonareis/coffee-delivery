@@ -1,5 +1,8 @@
+import { useFormContext } from 'react-hook-form'
+
 import { Text } from '@/ui-components'
 
+import { CheckoutFormData } from '../..'
 import {
   Container,
   Header,
@@ -11,23 +14,15 @@ import {
 
 interface OptionProps {
   id: string
-  name: string
-  checked?: boolean
   title: string
   icon: any
 }
 
-function Option({ id, name, checked, title, icon }: OptionProps) {
+function Option({ id, title, icon }: OptionProps) {
+  const { register } = useFormContext<CheckoutFormData>()
   return (
     <PaymentOption>
-      <input
-        type="radio"
-        id={id}
-        value={id}
-        name={name}
-        defaultChecked={checked}
-        onChange={(e) => console.log(e.target.value)}
-      />
+      <input type="radio" id={id} value={id} {...register('payment')} />
       <label htmlFor={id}>
         {icon} {title}
       </label>
@@ -53,25 +48,11 @@ export function Payment() {
       <PaymentOptions>
         <Option
           id="credit-card"
-          name="payment"
           title="Cartão de Crédito"
           icon={<Icon.CreditCard />}
-          checked
         />
-
-        <Option
-          id="debit-card"
-          name="payment"
-          title="Cartão de Débito"
-          icon={<Icon.Bank />}
-        />
-
-        <Option
-          id="money"
-          name="payment"
-          title="Dinheiro"
-          icon={<Icon.Money />}
-        />
+        <Option id="debit-card" title="Cartão de Débito" icon={<Icon.Bank />} />
+        <Option id="money" title="Dinheiro" icon={<Icon.Money />} />
       </PaymentOptions>
     </Container>
   )

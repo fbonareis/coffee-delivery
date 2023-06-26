@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom'
+
 import successIllustration from '@/assets/success-illustration.svg'
 import { Text, Title } from '@/ui-components'
 
@@ -12,6 +14,19 @@ import {
 } from './styles'
 
 export function Success() {
+  const { state } = useLocation()
+
+  const getPaymentDescriptionFromKey = (key: string) => {
+    switch (key) {
+      case 'credit-card':
+        return 'Cartão de Crédito'
+      case 'debit-card':
+        return 'Cartão de Débito'
+      case 'money':
+        return 'Dinheiro'
+    }
+  }
+
   return (
     <Container>
       <Title size="l" color="yellow-dark" weight="extraBold">
@@ -30,9 +45,10 @@ export function Success() {
                   <Icons.MapPin />
                 </Icon>
                 <Text size="m" color="base-text">
-                  Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                  Entrega em{' '}
+                  <strong>{`${state.address.street}, ${state.address.number}`}</strong>
                   <br />
-                  Farrapos - Porto Alegre, RS
+                  {`${state.address.city} - ${state.address.state}, ${state.address.state_short}`}
                 </Text>
               </Item>
 
@@ -54,7 +70,7 @@ export function Success() {
                 <Text size="m" color="base-text">
                   Pagamento na entrega
                   <br />
-                  <strong>Cartão de Crédito</strong>
+                  <strong>{getPaymentDescriptionFromKey(state.payment)}</strong>
                 </Text>
               </Item>
             </Items>

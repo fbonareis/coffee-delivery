@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContext } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import * as zod from 'zod'
 
 import { AppContext } from '@/contexts'
@@ -21,12 +22,14 @@ const checkoutFormValidationSchema = zod.object({
     state: zod.string().min(1, 'Campo obrigatório'),
     state_short: zod.string().min(1, 'Campo obrigatório'),
   }),
+  payment: zod.string(),
 })
 
 export type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>
 
 export function Checkout() {
   const { cart } = useContext(AppContext)
+  const navigate = useNavigate()
 
   const checkoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormValidationSchema),
@@ -40,43 +43,51 @@ export function Checkout() {
         state: '',
         state_short: '',
       },
+      payment: 'credit-card',
     },
   })
 
   const { handleSubmit } = checkoutForm
 
   function handleSubmitCheckout(data: CheckoutFormData) {
-    console.log(data)
+    const { address, payment } = data
+
+    navigate('/success', {
+      state: {
+        address,
+        payment,
+      },
+    })
   }
 
   return (
     <CheckoutContainer>
       <form onSubmit={handleSubmit(handleSubmitCheckout)} action="">
-        <Sections>
-          <Section.CompleteCheckout>
-            <Section.Title>Complete seu pedido</Section.Title>
-            <Section.Content>
-              <FormProvider {...checkoutForm}>
+        <FormProvider {...checkoutForm}>
+          <Sections>
+            <Section.CompleteCheckout>
+              <Section.Title>Complete seu pedido</Section.Title>
+              <Section.Content>
                 <DeliveryAddress />
-              </FormProvider>
-            </Section.Content>
-            <Section.Content>
-              <Payment />
-            </Section.Content>
-          </Section.CompleteCheckout>
+              </Section.Content>
+              <Section.Content>
+                <Payment />
+              </Section.Content>
+            </Section.CompleteCheckout>
 
-          <Section.Summary>
-            <Section.Title>Cafés Selecionados</Section.Title>
-            <Section.Content>
-              <CartList items={cart.items} />
-              <CartSummary
-                subTotal={cart.summary.subTotal}
-                delivery={3.5}
-                total={33.5}
-              />
-            </Section.Content>
-          </Section.Summary>
-        </Sections>
+            <Section.Summary>
+              <Section.Title>Cafés Selecionados</Section.Title>
+              <Section.Content>
+                <CartList items={cart.items} />
+                <CartSummary
+                  subTotal={cart.summary.subTotal}
+                  delivery={3.5}
+                  total={33.5}
+                />
+              </Section.Content>
+            </Section.Summary>
+          </Sections>
+        </FormProvider>
       </form>
     </CheckoutContainer>
   )
